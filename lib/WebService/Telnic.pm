@@ -9,11 +9,11 @@ WebService::Telnic - Interface to Telnic's SOAP API's
 
 =head1 VERSION
 
-Version 0.1
+Version 0.2
 
 =cut
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 =head1 AUTHOR
 
@@ -35,6 +35,10 @@ L<WebService::Telnic::Client>
 You can also look for information at:
 
 =over 4
+
+=item * github: Public version control system
+
+L<http://github.com/pmakholm/telnic-perl/tree>
 
 =item * RT: CPAN's request tracker
 

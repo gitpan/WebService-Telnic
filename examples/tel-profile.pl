@@ -16,26 +16,27 @@ GetOptions(
     'set=s'      => \$set,
 );
 
-die 'endpoint, domain, user, and pass is all needed' unless
-    $endpoint && $domain && $user && $pass;
+die 'domain, user, and pass is all needed' unless
+    $domain && $user && $pass;
 
 die 'One and only one of --list or --set' if ($list && $set) || (!$list && !$set);
 
 my $client = WebService::Telnic::Client->new(
     endpoint => $endpoint,
+    domain   => $domain,
     user     => $user,
     pass     => $pass,
 );
 
 if ($list) {
-    my $profiles = $client->listProfilesExt($domain);
+    my $profiles = $client->listProfilesExt();
 
     for my $profile (@{ $profiles->{profile} }) {
         print ($profile->{id} == $profiles->{active} ? '*' : ' ');
         print $profile->{id}, "\t", $profile->{name}, "\n";
     }
 } else {
-    my $res = $client->switchToProfile($domain, id => $set);
+    my $res = $client->switchToProfile(id => $set);
     print $res ? "Succedded\n" : "failed\n";
 }
 
